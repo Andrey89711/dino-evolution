@@ -3,6 +3,7 @@ dist/
 .vite/
 .cache/
 coverage/
+.test-build/
 *.local
 .env
 .env.*
