@@ -1,0 +1,14 @@
+{
+  "populationSize": 100,
+  "eliteCount": 5,
+  "tournamentSize": 3,
+  "mutationProbability": 0.1,
+  "mutationSigma": 0.15,
+  "evolutionSeed": 2026,
+  "baselineSeed": 9001,
+  "trainingSeeds": [42, 81, 813],
+  "validationSeeds": [1042, 1081, 1813],
+  "testSeeds": [2042, 2081, 2813],
+  "maxGenerations": 5,
+  "maxEnvironmentSteps": 5000000
+}

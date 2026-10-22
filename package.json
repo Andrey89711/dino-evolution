@@ -10,6 +10,7 @@
     "dev": "vite --host 127.0.0.1",
     "typecheck": "tsc --noEmit",
     "test": "tsc -p tsconfig.test.json && node --test tests/*.test.mjs",
+    "experiment": "tsc -p tsconfig.test.json && node scripts/experiment.mjs",
     "build": "npm run typecheck && vite build",
     "preview": "vite preview --host 127.0.0.1"
   },

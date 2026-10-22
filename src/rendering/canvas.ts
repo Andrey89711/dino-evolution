@@ -13,9 +13,9 @@ function drawDigits(ctx: CanvasRenderingContext2D, atlas: CanvasImageSource, tex
 
 export function render(
   ctx: CanvasRenderingContext2D, state: State, paused: boolean,
-  atlas: CanvasImageSource, bestDistance: number,
+  atlas: CanvasImageSource, bestDistance: number, showPlayer = true,
 ): void {
-  const { width, height, groundY, playerX } = CONFIG;
+  const { width, height, groundY } = CONFIG;
   ctx.imageSmoothingEnabled = false;
   ctx.clearRect(0, 0, width, height);
   ctx.fillStyle = '#ffffff';
@@ -52,16 +52,7 @@ export function render(
       Math.round(obstacle.x), groundY - obstacle.height, obstacle.width, obstacle.height);
   }
 
-  const runningFrame = Math.floor(state.tick / 5) % 2 === 0 ? 88 : 132;
-  if (state.ducking && state.status !== 'collision') {
-    const duckFrame = Math.floor(state.tick / 8) % 2 === 0 ? 264 : 323;
-    // Duck frames occupy the bottom 25 rows of the 47px-tall T-Rex strip.
-    ctx.drawImage(atlas, 848 + duckFrame, 24, 59, 25, playerX - 3, groundY - 25, 59, 25);
-  } else {
-    const frame = state.status === 'collision' ? 220 : state.elevation > 0 ? 0 : runningFrame;
-    ctx.drawImage(atlas, 848 + frame, 2, 44, 47,
-      playerX - 6, Math.round(groundY - state.elevation - 47), 44, 47);
-  }
+  if (showPlayer) drawPlayer(ctx, state, atlas);
 
   const score = Math.round(state.distance * 0.025).toString().padStart(5, '0');
   const best = Math.round(bestDistance * 0.025).toString().padStart(5, '0');
@@ -81,4 +72,19 @@ export function render(
     ctx.fillText(paused ? 'P A U S E D' : 'T I M E   L I M I T', width / 2, 106);
     ctx.textAlign = 'left';
   }
+}
+
+export function drawPlayer(ctx: CanvasRenderingContext2D, state: State, atlas: CanvasImageSource): void {
+  const { playerX, groundY } = CONFIG;
+  const runningFrame = Math.floor(state.tick / 5) % 2 === 0 ? 88 : 132;
+  if (state.ducking && state.status !== 'collision') {
+    const duckFrame = Math.floor(state.tick / 8) % 2 === 0 ? 264 : 323;
+    // Duck frames occupy the bottom 25 rows of the 47px-tall T-Rex strip.
+    ctx.drawImage(atlas, 848 + duckFrame, 24, 59, 25, playerX - 3, groundY - 25, 59, 25);
+  } else {
+    const frame = state.status === 'collision' ? 220 : state.elevation > 0 ? 0 : runningFrame;
+    ctx.drawImage(atlas, 848 + frame, 2, 44, 47,
+      playerX - 6, Math.round(groundY - state.elevation - 47), 44, 47);
+  }
+
 }

@@ -3,7 +3,7 @@
   "compilerOptions": {
     "noEmit": false,
     "outDir": ".test-build",
-    "rootDir": "src/game"
+    "rootDir": "src"
   },
-  "include": ["src/game/**/*.ts"]
+  "include": ["src/game/**/*.ts", "src/ai/**/*.ts", "src/evolution/**/*.ts", "src/experiments/checkpoint.ts", "src/experiments/evaluation.ts"]
 }

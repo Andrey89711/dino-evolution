@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { Environment, CONFIG } from '../.test-build/environment.js';
+import { Environment, CONFIG } from '../.test-build/game/environment.js';
 
 // A fixture controller used to reach later test scenarios, not a measured baseline.
 function fixtureAction(observation) {

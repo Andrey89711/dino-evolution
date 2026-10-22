@@ -4,6 +4,7 @@ dist/
 .cache/
 coverage/
 .test-build/
+artifacts/
 *.local
 .env
 .env.*
